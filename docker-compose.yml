@@ -5,6 +5,15 @@ volumes:
   db:
 
 services:
+  re-proxy:
+    image: nginx:1.16-alpine
+    ports:
+     - "80:80"
+    volumes:
+     - ./r-proxy:/etc/nginx/conf.d/:ro
+    depends_on:
+     - web
+
   db:
     image: mariadb:10.4
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
@@ -35,8 +44,6 @@ services:
 
   web:
     image: nginx:1.17-alpine
-    ports:
-      - 8080:80
     links:
       - app
     volumes:
