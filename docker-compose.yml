@@ -27,6 +27,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=nextcloud
       - POSTGRES_USER=nextcloud
+      - PGDATA=/var/lib/postgresql/nextcloud
 
   app:
     image: nextcloud:17-fpm-alpine
