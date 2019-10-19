@@ -13,6 +13,10 @@ services:
      - ./r-proxy:/etc/nginx/conf.d/:ro
     depends_on:
      - web
+  
+  redis:
+    image: redis:5-alpine  
+    restart: always 
 
   db:
     image: mariadb:10.4
@@ -30,6 +34,7 @@ services:
     image: nextcloud:17-fpm-alpine
     links:
       - db
+      - redis  
     volumes:
       - nextcloud:/var/www/html
     environment:
