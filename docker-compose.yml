@@ -12,6 +12,7 @@ services:
      - "8080:8080"
     volumes:
      - ./r-proxy:/etc/nginx/conf.d/:ro
+     - ./hosts:/etc/hosts:rw
     depends_on:
      - web
      - collabora
@@ -54,6 +55,7 @@ services:
       - app
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./hosts:/etc/hosts:rw
     volumes_from:
       - app
     restart: always
@@ -62,14 +64,16 @@ services:
     image: collabora/code:4.0.6.1
     links:
       - app
-    ports:
-     - "127.0.0.1:9980:9980"
+    volumes:
+      - ./hosts:/etc/hosts:rw
+    expose:
+      - "9980"
     environment:
       - domain=nextcloud\\.local\\.com
       - username=admin
       - password=password
       - extra_params=--o:ssl.enable=false
-      - server_name=office\.local\.com
+      - server_name=office\\.local\\.com
     cap_add:
      - MKNOD
     restart: always
