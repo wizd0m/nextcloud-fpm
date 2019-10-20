@@ -12,7 +12,6 @@ services:
      - "8080:8080"
     volumes:
      - ./r-proxy:/etc/nginx/conf.d/:ro
-     - ./hosts:/etc/hosts
     depends_on:
      - web
      - collabora
@@ -64,8 +63,6 @@ services:
     image: collabora/code:4.0.6.1
     links:
       - app
-    volumes:
-      - ./hosts:/etc/hosts
     ports:
      - "9980:9980"
     environment:
@@ -76,4 +73,4 @@ services:
       - server_name=office\.local\.com
     cap_add:
      - MKNOD
-    restart: always  
+    restart: always
