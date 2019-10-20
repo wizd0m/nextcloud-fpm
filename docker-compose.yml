@@ -55,3 +55,15 @@ services:
     volumes_from:
       - app
     restart: always
+    
+  collabora:
+    image: collabora/code:4.0.6.1
+    links:
+      - app
+    environment:
+      - doman="nextcloud.local.com"
+      - username=admin
+      - password=password
+      - extra_params="extra_params=--o:ssl.enable=false"
+      - server_name="office.local.com"
+    restart: always  
