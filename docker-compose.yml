@@ -12,6 +12,7 @@ services:
      - "8080:8080"
     volumes:
      - ./r-proxy:/etc/nginx/conf.d/:ro
+     - ./hosts:/etc/hosts
     depends_on:
      - web
      - collabora
@@ -54,6 +55,7 @@ services:
       - app
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./hosts:/etc/hosts
     volumes_from:
       - app
     restart: always
@@ -62,6 +64,8 @@ services:
     image: collabora/code:4.0.6.1
     links:
       - app
+    volumes:
+      - ./hosts:/etc/hosts
     environment:
       - doman="nextcloud.local.com"
       - username=admin
