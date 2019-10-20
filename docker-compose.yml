@@ -9,13 +9,10 @@ services:
     image: nginx:1.16-alpine
     ports:
       - "80:80"
-      - "8080:8080"
     volumes:
       - ./r-proxy:/etc/nginx/conf.d/:ro
-      - ./hosts:/etc/hosts:rw
     depends_on:
       - web
-      - collabora
   
   redis:
     image: redis:5-alpine  
@@ -55,25 +52,6 @@ services:
       - app
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./hosts:/etc/hosts:rw
     volumes_from:
       - app
-    restart: always
-    
-  collabora:
-    image: collabora/code:4.0.6.1
-    links:
-      - app
-    volumes:
-      - ./hosts:/etc/hosts:rw
-    expose:
-      - "9980"
-    environment:
-      - domain=nextcloud\\.local\\.com
-      - username=admin
-      - password=password
-      - extra_params=--o:ssl.enable=false
-      - server_name=office\\.local\\.com
-    cap_add:
-      - MKNOD
     restart: always
