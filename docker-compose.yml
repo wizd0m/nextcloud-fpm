@@ -69,11 +69,11 @@ services:
     ports:
      - "9980:9980"
     environment:
-      - domain="nextcloud.local.com"
+      - domain=nextcloud\.local\.com
       - username=admin
       - password=password
       - extra_params=--o:ssl.enable=false
-      - server_name="office.local.com"
+      - server_name=office\.local\.com
     cap_add:
      - MKNOD
     restart: always  
