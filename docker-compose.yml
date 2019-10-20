@@ -66,6 +66,8 @@ services:
       - app
     volumes:
       - ./hosts:/etc/hosts
+    ports:
+     - "9980:9980"
     environment:
       - doman="nextcloud.local.com"
       - username=admin
