@@ -67,4 +67,8 @@ services:
       - password=password
       - extra_params="extra_params=--o:ssl.enable=false"
       - server_name="office.local.com"
+    depends_on:
+      - re-proxy
+    cap_add:
+     - MKNOD
     restart: always  
