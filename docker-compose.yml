@@ -8,14 +8,14 @@ services:
   re-proxy:
     image: nginx:1.16-alpine
     ports:
-     - "80:80"
-     - "8080:8080"
+      - "80:80"
+      - "8080:8080"
     volumes:
-     - ./r-proxy:/etc/nginx/conf.d/:ro
-     - ./hosts:/etc/hosts:rw
+      - ./r-proxy:/etc/nginx/conf.d/:ro
+      - ./hosts:/etc/hosts:rw
     depends_on:
-     - web
-     - collabora
+      - web
+      - collabora
   
   redis:
     image: redis:5-alpine  
@@ -75,5 +75,5 @@ services:
       - extra_params=--o:ssl.enable=false
       - server_name=office\\.local\\.com
     cap_add:
-     - MKNOD
+      - MKNOD
     restart: always
