@@ -54,7 +54,6 @@ services:
       - app
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./hosts:/etc/hosts
     volumes_from:
       - app
     restart: always
