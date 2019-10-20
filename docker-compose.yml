@@ -63,7 +63,7 @@ services:
     links:
       - app
     ports:
-     - "127.0.0.1:9980:"
+     - "127.0.0.1:9980:9980"
     environment:
       - domain=nextcloud\\.local\\.com
       - username=admin
