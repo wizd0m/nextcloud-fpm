@@ -59,6 +59,9 @@ services:
     restart: always
 
   collabora:
+    build: 
+      context: ./collabora
+      dockerfile: Dockerfile
     image: p4ng/collabora:1.0
     links:
       - app
