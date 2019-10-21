@@ -42,4 +42,4 @@ COPY ./script/start-libreoffice.sh /
 
 RUN chmod +x /start-libreoffice.sh 
 
-CMD ["bash start-libreoffice.sh"]
+CMD bash start-libreoffice.sh
