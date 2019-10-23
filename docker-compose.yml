@@ -1,9 +1,5 @@
 version: '2'
 
-volumes:
-  nextcloud:
-  db:
-
 services:
   re-proxy:
     image: nginx:1.16-alpine
@@ -26,7 +22,7 @@ services:
     image: postgres:12-alpine
     restart: always
     volumes:
-      - db:/var/lib/postgresql/nextcloud
+      - ./db:/var/lib/postgresql/nextcloud
     environment:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=nextcloud
@@ -40,7 +36,7 @@ services:
       - db
       - redis  
     volumes:
-      - nextcloud:/var/www/html
+      - ./nextcloud:/var/www/html
     environment:
       - POSTGRES_HOST=db
       - POSTGRES_DB=nextcloud
@@ -69,7 +65,7 @@ services:
     build: 
       context: ./collabora
       dockerfile: Dockerfile
-    image: p4ng/collabora:1.0
+    image: p4ng/collabora:1.1-no-msfonts
     links:
       - app
     expose:
